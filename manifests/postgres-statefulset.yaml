@@ -52,7 +52,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: development
   name: postgres-svc
   labels:
     app: postgres
