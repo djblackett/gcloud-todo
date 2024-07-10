@@ -7,7 +7,6 @@ resources:
   - manifests/job.yaml
   - manifests/postgres-init-config.yaml
   - manifests/postgres-statefulset.yaml
-  - manifests/secret.enc.yaml
   - manifests/web-configmap.yaml
   - volumes/persistantvolume.yaml
   - volumes/persistentvolumeclaim.yaml

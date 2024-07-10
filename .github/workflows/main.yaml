@@ -38,7 +38,6 @@ jobs:
           cluster_name: '${{ env.GKE_CLUSTER }}'
           project_id: '${{ env.PROJECT_ID }}'
           location: '${{ env.GKE_ZONE }}'
-          namespace: development
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
