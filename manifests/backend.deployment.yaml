@@ -39,11 +39,11 @@ spec:
               value: todos
             - name: POSTGRES_PORT
               value: "5432"
-            - name: PASSWORD
+            - name: postgres-password
               valueFrom:
                 secretKeyRef:
                   name: postgres-password
-                  key: PASSWORD
+                  key: POSTGRES_PASSWORD
 
 ---
 apiVersion: v1
