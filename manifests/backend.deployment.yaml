@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: development
+  # namespace: development
   name: todo-go-backend
 spec:
   replicas: 1
@@ -16,7 +16,12 @@ spec:
       initContainers:
         - name: wait-for-postgres
           image: busybox:1.28
-          command: [ 'sh', '-c', 'until nc -z postgres-svc 5432; do echo "Waiting for PostgreSQL..."; sleep 2; done; echo "PostgreSQL is up"' ]
+          command:
+            [
+              "sh",
+              "-c",
+              'until nc -z postgres-svc 5432; do echo "Waiting for PostgreSQL..."; sleep 2; done; echo "PostgreSQL is up"',
+            ]
       containers:
         - name: todo-go-backend
           image: djblackett/backend:v2.10
@@ -42,7 +47,6 @@ spec:
                   key: PASSWORD
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:

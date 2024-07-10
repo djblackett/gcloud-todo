@@ -1,10 +1,9 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  namespace: development
+  # namespace: development
   name: reminder
 spec:
-
   schedule: 38 * * * *
   jobTemplate:
     metadata:

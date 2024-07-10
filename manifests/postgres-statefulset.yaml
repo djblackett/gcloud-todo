@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: development
+  # namespace: development
   name: postgres-ss
 spec:
   serviceName: postgres
@@ -17,7 +17,8 @@ spec:
       containers:
         - name: postgres
           image: postgres:13.0
-          command: ["/bin/bash", "/docker-entrypoint-initdb.d/custom-entrypoint.sh"]
+          command:
+            ["/bin/bash", "/docker-entrypoint-initdb.d/custom-entrypoint.sh"]
           ports:
             - name: postgres
               containerPort: 5432
