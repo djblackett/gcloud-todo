@@ -7,8 +7,8 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: "dwk-cluster"
   GKE_ZONE: "northamerica-northeast1"
-  # IMAGE: dwk-environments
-  # SERVICE: dwk-environments
+  IMAGE: dwk-environments
+  SERVICE: dwk-environments
   BRANCH: ${{ github.ref_name }}
 
 jobs:
