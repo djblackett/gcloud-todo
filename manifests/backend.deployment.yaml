@@ -35,11 +35,11 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: "50m" # Request 50 millicores of CPU
+              cpu: "50m"
               memory: "50Mi"
             limits:
-              cpu: "200m" # Limit to 200 millicores of CPU
-              memory: "200Mi" # Limit to 200 MiB of memory
+              cpu: "200m"
+              memory: "200Mi"
 
           env:
             - name: PORT
