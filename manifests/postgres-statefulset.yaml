@@ -16,8 +16,8 @@ spec:
       containers:
         - name: postgres
           image: postgres:13.0
-          command:
-            ["/bin/bash", "/docker-entrypoint-initdb.d/custom-entrypoint.sh"]
+#          command:
+#            ["/bin/bash", "/docker-entrypoint-initdb.d/custom-entrypoint.sh"]
           ports:
             - name: postgres
               containerPort: 5432
