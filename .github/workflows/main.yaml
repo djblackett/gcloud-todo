@@ -65,6 +65,6 @@ jobs:
         run: |-
           kustomize edit set image frontend=${{ secrets.DOCKER_USERNAME }}/frontend:${GITHUB_SHA} backend=${{ secrets.DOCKER_USERNAME }}/backend:${GITHUB_SHA}
           kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment frontend-deployment
-          kubectl rollout status deployment backend-deployment
+          kubectl rollout status deployment todo-go-frontend
+          kubectl rollout status deployment todo-go-backend
           kubectl get services -o wide
