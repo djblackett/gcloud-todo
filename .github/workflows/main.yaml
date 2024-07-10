@@ -49,7 +49,7 @@ jobs:
         run: docker build --tag "${{ secrets.DOCKER_USERNAME }}/frontend:${GITHUB_SHA}" ./frontend
 
       - name: Build Backend
-        run: docker build --tag "${{ secrets.DOCKER_USERNAME }}/backend:${GITHUB_SHA}" ./backend
+        run: docker build --tag "${{ secrets.DOCKER_USERNAME }}/backend:${GITHUB_SHA}" ./backend --no-cache
 
 
       - name: Push Frontend
