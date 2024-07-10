@@ -58,7 +58,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: postgres-password
-                  key: PASSWORD
+                  key: POSTGRES_PASSWORD
 
 ---
 apiVersion: v1
