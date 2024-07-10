@@ -49,7 +49,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: development
   name: todo-go-backend-svc
 spec:
   type: ClusterIP
