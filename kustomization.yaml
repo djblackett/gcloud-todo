@@ -10,4 +10,3 @@ resources:
   - manifests/web-configmap.yaml
   - volumes/persistantvolume.yaml
   - volumes/persistentvolumeclaim.yaml
-  - manifests/secret.enc.yaml
