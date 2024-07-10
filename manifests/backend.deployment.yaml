@@ -36,7 +36,7 @@ spec:
           resources:
             requests:
               cpu: "50m" # Request 50 millicores of CPU
-              memory: "50Mi" # Request 50 MiB of memory
+              memory: "50Mi"
             limits:
               cpu: "200m" # Limit to 200 millicores of CPU
               memory: "200Mi" # Limit to 200 MiB of memory
