@@ -63,8 +63,10 @@ jobs:
 
       - name: Deploy
         run: |-
-          kubectl create namespace ${GITHUB_REF#refs/heads/} || true
-          kubectl config set-context --current --namespace=${GITHUB_REF#refs/heads/}
+          if [ "${{ env.BRANCH }}" != "main" ]; then
+            kubectl create namespace ${GITHUB_REF#refs/heads/} || true
+            kubectl config set-context --current --namespace=${GITHUB_REF#refs/heads/}
+          fi
           kustomize edit set image frontend=${{ secrets.DOCKER_USERNAME }}/frontend:${GITHUB_SHA} backend=${{ secrets.DOCKER_USERNAME }}/backend:${GITHUB_SHA}
           kustomize build . | kubectl apply -f -
           kubectl rollout status deployment todo-go-frontend --timeout 600s
