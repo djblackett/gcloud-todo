@@ -27,7 +27,7 @@ func LoggerMiddleware() gin.HandlerFunc {
 func main() {
 
 	var host = os.Getenv("HOST")
-	var password = os.Getenv("POSTGRES_PASSWORD") // switch to encrypted secret later
+	var password = os.Getenv("PASSWORD") // switch to encrypted secret later
 	postgresPort, err := strconv.Atoi(os.Getenv("POSTGRES_PORT"))
 	if err != nil {
 		panic("Invalid port number")

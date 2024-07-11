@@ -30,7 +30,7 @@ spec:
               memory: "20Mi"
       containers:
         - name: todo-go-backend
-          image: djblackett/backend:v2.10
+          image: djblackett/backend:v2.11
           ports:
             - containerPort: 8080
           resources:
@@ -54,7 +54,7 @@ spec:
               value: todos
             - name: POSTGRES_PORT
               value: "5432"
-            - name: POSTGRES_PASSWORD
+            - name: PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-password
