@@ -15,8 +15,6 @@ function App() {
   const mode = useSelector(selectColorMode);
   const image = useSelector(selectImage);
   const dispatch = useDispatch();
-  const url = API_URL
-  console.log(url)
 
   useEffect(() => {
     let html = document.querySelector("body");
@@ -24,21 +22,6 @@ function App() {
       mode === "light" ? "hsl(236, 33%, 92%)" : "hsl(235, 21%, 11%)";
   }, [mode]);
 
-  // useEffect(() => {
-  //   const getImage = async () => {
-  //     const response = await fetch("localhost:8080/img")
-  //     if (response.ok) {
-  //       console.log(await response.blob())
-  //       return response.blob()
-  //     } else {
-  //       return response.status
-  //     }
-  //   }
-  //
-  //   const pic = getImage();
-  //   console.log(pic)
-  //
-  // }, [])
 
   function handleLogoChange() {
     dispatch(toggleColorMode());
@@ -59,40 +42,39 @@ function App() {
         <div className={`background-img-${mode}`} id="background-img"></div>
         <header>
           <h1>TODO</h1>
-          {/*<h2>API URL: {API_URL}</h2>*/}
           <div
-              tabIndex={0}
-              onKeyDown={toggleDarkEnter}
-              id="svgContainer"
-              onClick={handleLogoChange}
+            tabIndex={0}
+            onKeyDown={toggleDarkEnter}
+            id="svgContainer"
+            onClick={handleLogoChange}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
-              <path fill="#FFF" fillRule="evenodd" d={image}/>
+              <path fill="#FFF" fillRule="evenodd" d={image} />
             </svg>
           </div>
         </header>
-        <InputBar/>
-        <TodoList/>
+        <InputBar />
+        <TodoList />
         <p className="drag">Drag and drop to reorder list</p>
         <div className="attribution">
           Challenge by{" "}
           <a
-              href="https://www.frontendmentor.io?ref=challenge"
-              target="_blank"
-              rel="noreferrer"
+            href="https://www.frontendmentor.io?ref=challenge"
+            target="_blank"
+            rel="noreferrer"
           >
             Frontend Mentor
           </a>
           . Coded by <a href="#">David Andrea</a>.
         </div>
         <button
-            className={`reset-${mode}`}
-            id="reset"
-            onClick={() => dispatch(resetList())}
+          className={`reset-${mode}`}
+          id="reset"
+          onClick={() => dispatch(resetList())}
         >
           Reset todo list
         </button>
-        <img id="download" src={url + "/img.jpg"}/>
+        <img id="download" src={"/img.jpg"} />
       </div>
     </main>
   );
