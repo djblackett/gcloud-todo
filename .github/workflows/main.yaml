@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Frontend
         # run: docker build --tag "${{ secrets.DOCKER_USERNAME }}/frontend:${GITHUB_SHA}" ./frontend
-        run: cd todo-react && npm install && npm run build && cd ../ && docker build --tag "gcr.io/$PROJECT_ID/frontend:$BRANCH-$GITHUB_SHA" ./frontend
+        run: docker build --tag "gcr.io/$PROJECT_ID/frontend:$BRANCH-$GITHUB_SHA" ./frontend
 
       - name: Build Backend
         # run: docker build --tag "${{ secrets.DOCKER_USERNAME }}/backend:${GITHUB_SHA}" ./backend --no-cache
