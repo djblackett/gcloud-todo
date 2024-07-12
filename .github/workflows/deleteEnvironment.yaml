@@ -1,0 +1,9 @@
+name: Delete environment
+
+on:
+    delete:
+
+jobs:
+    delete_env:
+      name: delete env
+      runs-on: ubuntu-latest
