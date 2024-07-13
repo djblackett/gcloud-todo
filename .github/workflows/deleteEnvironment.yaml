@@ -1,7 +1,7 @@
 name: Delete environment
 
 on:
-    delete:
+  delete:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -41,6 +41,10 @@ jobs:
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v2
 
+      - name: Extract branch name
+        id: extract_ref
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
       - name: Delete namespace
         run: |-
-            kubectl delete namespace "${{ env.BRANCH }}"
+            kubectl delete namespace "${{ env.BRANCH_NAME }}"
