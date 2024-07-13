@@ -15,6 +15,7 @@ data:
     #!/bin/bash
     set -e
 
+
     # Start the PostgreSQL server
     docker-entrypoint.sh postgres &
 
