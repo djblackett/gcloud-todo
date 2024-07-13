@@ -43,7 +43,7 @@ jobs:
 
       - name: Extract branch name
         id: extract_ref
-        run: echo "BRANCH_NAME=${GITHUB_EVENT_REF#refs/heads/}" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=$(echo ${{ github.event.ref }} | sed 's|refs/heads/||')" >> $GITHUB_ENV
 
       - name: Delete namespace
         run: |-
