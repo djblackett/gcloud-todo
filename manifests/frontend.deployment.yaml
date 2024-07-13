@@ -15,6 +15,13 @@ spec:
       containers:
         - name: todo-go-frontend
           image: djblackett/frontend:v0.15
+          resources:
+            requests:
+              cpu: "5m"
+              memory: "5Mi"
+            limits:
+              cpu: "20m"
+              memory: "20Mi"
           env:
             - name: PORT
               value: ":8080"
