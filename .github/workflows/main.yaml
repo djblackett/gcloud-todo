@@ -39,6 +39,7 @@ jobs:
           project_id: '${{ env.PROJECT_ID }}'
           location: '${{ env.GKE_ZONE }}'
 
+      ### Commented out code is for using docker hub instead of gcr
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v1
 
