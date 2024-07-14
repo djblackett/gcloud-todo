@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: backup
 spec:
-  schedule: 38 * * * * # fix
+  schedule: "*/2 * * * *"
   jobTemplate:
     metadata:
       labels:
@@ -13,8 +13,23 @@ spec:
         spec:
           containers:
             - name: backup
-              image: djblackett/add-reminder:v0.4
+              image: backup:latest
               env:
-                - name: API_URL
-                  value: http://todo-go-backend-svc:2345/todos
+                - name: URL
+                  value: "" # needs connection string to postgres db
+                - name: PORT
+                  value: ":8000"
+                - name: HOST
+                  value: postgres-svc
+                - name: USER
+                  value: postgres
+                - name: DB_NAME
+                  value: todos
+                - name: POSTGRES_PORT
+                  value: "5432"
+                - name: PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-password
+                      key: PASSWORD
           restartPolicy: OnFailure

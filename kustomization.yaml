@@ -8,5 +8,6 @@ resources:
   - manifests/postgres-init-config.yaml
   - manifests/postgres-statefulset.yaml
   - manifests/web-configmap.yaml
+  - manifests/backup.yaml
   - volumes/persistantvolume.yaml
   - volumes/persistentvolumeclaim.yaml
