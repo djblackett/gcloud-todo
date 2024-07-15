@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
@@ -37,6 +38,8 @@ func main() {
 	go startTimestampWatcher()
 
 	r := gin.Default()
+
+	http.Handle("/metrics", promhttp.Handler())
 
 	r.Static("/static", "./build/static")           // Serve static files from React's build directory
 	r.StaticFile("/config.js", "./build/config.js") // Serve config.js separately

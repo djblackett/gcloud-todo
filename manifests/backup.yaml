@@ -3,6 +3,7 @@ kind: CronJob
 metadata:
   name: backup
 spec:
+  serviceAccountName: my-k8s-sa
   schedule: "*/2 * * * *"
   jobTemplate:
     metadata:
@@ -11,6 +12,8 @@ spec:
     spec:
       template:
         spec:
+          nodeSelector:
+            iam.gke.io/gke-metadata-server-enabled: "true"
           containers:
             - name: backup
               image: backup:latest
@@ -32,4 +35,6 @@ spec:
                     secretKeyRef:
                       name: postgres-password
                       key: PASSWORD
+                # - name:
+                #   valueFrom:
           restartPolicy: OnFailure

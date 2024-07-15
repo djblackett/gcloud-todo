@@ -13,6 +13,8 @@ import (
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func LoggerMiddleware() gin.HandlerFunc {
@@ -64,6 +66,8 @@ func main() {
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
+
+	http.Handle("/metrics", promhttp.Handler())
 
 	r.GET("/", func(c *gin.Context) {
 		c.Status(http.StatusOK)
