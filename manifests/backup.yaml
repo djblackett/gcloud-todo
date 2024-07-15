@@ -16,7 +16,7 @@ spec:
             iam.gke.io/gke-metadata-server-enabled: "true"
           containers:
             - name: backup
-              image: backup:latest
+              image: backup
               env:
                 - name: PORT
                   value: ":8000"
