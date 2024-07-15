@@ -82,5 +82,4 @@ jobs:
           kustomize build . | kubectl apply -f -
           kubectl rollout status deployment todo-go-frontend --timeout 60s
           kubectl rollout status deployment todo-go-backend --timeout 60s
-          kubectl rollout status cronjob backup --timeout 60s
           kubectl get services -o wide
