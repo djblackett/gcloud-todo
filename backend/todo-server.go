@@ -2,19 +2,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	_ "github.com/lib/pq"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
-
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	_ "github.com/lib/pq"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func LoggerMiddleware() gin.HandlerFunc {
@@ -22,6 +20,14 @@ func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
 		c.Next()
+
+		// Log errors if any
+		if len(c.Errors) > 0 {
+			for _, e := range c.Errors {
+				logger.Printf("Error: %v", e.Err)
+			}
+		}
+
 		duration := time.Since(start)
 		logger.Printf("Request - Method: %s | Status: %d | Duration: %v", c.Request.Method, c.Writer.Status(), duration)
 	}
@@ -87,8 +93,25 @@ func main() {
 	r.POST("/todos", func(c *gin.Context) {
 		var newTodo Todo
 
-		// Call BindJSON to bind the received JSON
 		if err := c.BindJSON(&newTodo); err != nil {
+			// Log the error and return a 400 response
+			c.Error(err)
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON"})
+			return
+		}
+
+		// Check if the text length exceeds 140 characters
+		if len(newTodo.Text) > 140 {
+			err := fmt.Errorf("todo text exceeds 140 characters")
+			c.Error(err) // Add error to Gin context
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// Create the new todo in the database
+		if err := db.Create(&newTodo).Error; err != nil {
+			c.Error(err) // Log any database error
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not create todo"})
 			return
 		}
 

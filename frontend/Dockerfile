@@ -1,4 +1,4 @@
-FROM node:lts as react-builder
+FROM node:lts AS react-builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY ./todo-react ./
 RUN npm run build
 
 
-FROM golang:latest as builder
+FROM golang:latest AS builder
 LABEL authors="dave"
 
 WORKDIR /app
